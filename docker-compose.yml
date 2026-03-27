@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  taskmanager:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: taskmanager
+    # Keep container running so you can exec into it
+    tty: true
+    stdin_open: true
+    # Mount local output folder so files are saved to your Mac
+    volumes:
+      - ./output:/app/output
+    # Allow cron to run inside the container
+    cap_add:
+      - SYS_ADMIN
+    environment:
+      - PYTHONUNBUFFERED=1

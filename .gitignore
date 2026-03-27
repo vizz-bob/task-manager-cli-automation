@@ -1,0 +1,26 @@
+# Output files (generated at runtime - don't commit)
+tasks.json
+validated_tasks.json
+pending_tasks.json
+fetch.log
+step5_results.json
+screenshot_jsonplaceholder.png
+output/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# Node
+node_modules/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+/tmp/
