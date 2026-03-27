@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Flow Diagram</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f0f4f8; padding: 30px; }
+  h1 { text-align: center; color: #1e3a5f; margin-bottom: 6px; font-size: 22px; }
+  .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 13px; }
+
+  /* ── Flow diagram ── */
+  .flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0; margin-bottom: 40px; }
+  .step { background: white; border: 2px solid #1e5aa0; border-radius: 12px; padding: 14px 16px;
+          width: 130px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .step .num { background: #1e5aa0; color: white; border-radius: 50%; width: 26px; height: 26px;
+               line-height: 26px; font-size: 13px; font-weight: bold; margin: 0 auto 6px; }
+  .step .title { font-size: 12px; font-weight: bold; color: #1e3a5f; margin-bottom: 4px; }
+  .step .desc { font-size: 10px; color: #555; line-height: 1.4; }
+  .step .tool { font-size: 9px; color: #fff; background: #2e86c1; border-radius: 4px;
+                padding: 2px 5px; margin-top: 6px; display: inline-block; }
+  .arrow { font-size: 22px; color: #1e5aa0; padding: 0 4px; font-weight: bold; }
+
+  /* ── Output boxes ── */
+  .outputs { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 40px; }
+  .out-card { background: white; border-left: 4px solid #27ae60; border-radius: 8px;
+              padding: 12px 16px; width: 170px; box-shadow: 0 2px 6px rgba(0,0,0,0.07); }
+  .out-card .file { font-size: 11px; font-weight: bold; color: #1e5aa0; font-family: monospace; }
+  .out-card .fdesc { font-size: 10px; color: #666; margin-top: 4px; }
+
+  /* ── Bangalore section ── */
+  .section { background: white; border-radius: 12px; padding: 24px; margin-bottom: 24px;
+             box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+  .section h2 { color: #1e3a5f; font-size: 16px; margin-bottom: 14px; border-bottom: 2px solid #e8f0fa; padding-bottom: 8px; }
+  .blr-flow { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
+  .blr-step { background: #fff8e1; border: 2px solid #f39c12; border-radius: 10px;
+              padding: 12px 14px; width: 150px; text-align: center; }
+  .blr-step .btitle { font-size: 11px; font-weight: bold; color: #7d5a00; margin-bottom: 4px; }
+  .blr-step .bdesc { font-size: 10px; color: #555; line-height: 1.4; }
+  .blr-step .btool { font-size: 9px; color: #fff; background: #e67e22; border-radius: 4px;
+                     padding: 2px 5px; margin-top: 5px; display: inline-block; }
+  .barrow { font-size: 20px; color: #f39c12; padding: 0 4px; align-self: center; }
+
+  .comparison { display: flex; gap: 20px; flex-wrap: wrap; }
+  .col { flex: 1; min-width: 220px; }
+  .col h3 { font-size: 13px; font-weight: bold; margin-bottom: 8px; }
+  .col.orig h3 { color: #1e5aa0; }
+  .col.blr h3 { color: #c0392b; }
+  .row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 8px; font-size: 11px; color: #444; line-height: 1.5; }
+  .tag { font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+  .orig .tag { background: #d6e8f7; color: #1e5aa0; }
+  .blr  .tag  { background: #fde8d8; color: #c0392b; }
+
+  .note { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 12px 16px;
+          font-size: 11px; color: #856404; line-height: 1.6; }
+  .note strong { display: block; margin-bottom: 4px; }
+
+  /* ── Skills table ── */
+  table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  th { background: #1e5aa0; color: white; padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border-bottom: 1px solid #e8eef5; color: #444; }
+  tr:nth-child(even) td { background: #f4f8fd; }
+  .tick { color: #27ae60; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>Personal Task Manager CLI + Web Automation</h1>
+<p class="subtitle">How the 5 steps connect together</p>
+
+<!-- ── Main flow ── -->
+<div class="flow">
+  <div class="step">
+    <div class="num">1</div>
+    <div class="title">Fetch Data</div>
+    <div class="desc">Downloads 200 tasks from the internet</div>
+    <span class="tool">curl + jq</span>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="num">2</div>
+    <div class="title">Filter</div>
+    <div class="desc">Sorts tasks into done / not done</div>
+    <span class="tool">Python</span>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="num">3</div>
+    <div class="title">Validate</div>
+    <div class="desc">Checks every task has correct fields</div>
+    <span class="tool">requests + jsonschema</span>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="num">4</div>
+    <div class="title">Schedule</div>
+    <div class="desc">Runs Step 3 automatically every hour</div>
+    <span class="tool">cron</span>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="num">5</div>
+    <div class="title">Browser Bot</div>
+    <div class="desc">Opens website, takes screenshot, reads headings</div>
+    <span class="tool">Playwright</span>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="num">6</div>
+    <div class="title">Document</div>
+    <div class="desc">Writes CUA trajectory tables for each step</div>
+    <span class="tool">Markdown</span>
+  </div>
+</div>
+
+<!-- ── Output files ── -->
+<div class="section">
+  <h2>📁 Output Files Produced</h2>
+  <div class="outputs">
+    <div class="out-card"><div class="file">tasks.json</div><div class="fdesc">200 raw tasks downloaded from API</div></div>
+    <div class="out-card"><div class="file">fetch.log</div><div class="fdesc">Timestamped log of every fetch run</div></div>
+    <div class="out-card"><div class="file">pending_tasks.json</div><div class="fdesc">Only the 110 incomplete tasks</div></div>
+    <div class="out-card"><div class="file">validated_tasks.json</div><div class="fdesc">200 tasks, all passed quality check</div></div>
+    <div class="out-card"><div class="file">screenshot.png</div><div class="fdesc">Full-page browser screenshot (311KB)</div></div>
+    <div class="out-card"><div class="file">step5_results.json</div><div class="fdesc">Page title + 8 headings extracted</div></div>
+  </div>
+</div>
+
+<!-- ── Bangalore Ads section ── -->
+<div class="section">
+  <h2>🏙️ How to Adapt This for Bangalore Ads Monitoring</h2>
+  <p style="font-size:12px;color:#555;margin-bottom:16px;">
+    The same pipeline — fetch, filter, validate, schedule, screenshot — can monitor ads posted by companies in Bangalore on public sites like <strong>OLX, JustDial, IndiaMART, Sulekha, or Google My Business</strong>.
+  </p>
+
+  <div class="blr-flow">
+    <div class="blr-step">
+      <div class="btitle">Step 1 — Fetch Ads</div>
+      <div class="bdesc">Use Playwright to open OLX / JustDial and collect ad listings for Bangalore</div>
+      <span class="btool">Playwright</span>
+    </div>
+    <div class="barrow">→</div>
+    <div class="blr-step">
+      <div class="btitle">Step 2 — Extract Details</div>
+      <div class="bdesc">Pull company name, ad title, phone, category, posted date</div>
+      <span class="btool">Python + BeautifulSoup</span>
+    </div>
+    <div class="barrow">→</div>
+    <div class="blr-step">
+      <div class="btitle">Step 3 — Filter Bangalore</div>
+      <div class="bdesc">Keep only ads where location contains "Bangalore" or "Bengaluru"</div>
+      <span class="btool">Python</span>
+    </div>
+    <div class="barrow">→</div>
+    <div class="blr-step">
+      <div class="btitle">Step 4 — Save Report</div>
+      <div class="bdesc">Save to CSV/JSON with company names and ad counts</div>
+      <span class="btool">pandas / csv</span>
+    </div>
+    <div class="barrow">→</div>
+    <div class="blr-step">
+      <div class="btitle">Step 5 — Schedule</div>
+      <div class="bdesc">Run daily via cron, log new ads, alert on spikes</div>
+      <span class="btool">cron</span>
+    </div>
+  </div>
+
+  <!-- comparison -->
+  <div class="comparison" style="margin-top:16px;">
+    <div class="col orig">
+      <h3>📦 Original Project</h3>
+      <div class="row"><span class="tag">API</span> Fetch from JSONPlaceholder (fake tasks)</div>
+      <div class="row"><span class="tag">Filter</span> Filter by completed/pending</div>
+      <div class="row"><span class="tag">Validate</span> Check id, title, completed fields</div>
+      <div class="row"><span class="tag">Browser</span> Screenshot one website</div>
+      <div class="row"><span class="tag">Output</span> tasks.json, validated_tasks.json</div>
+    </div>
+    <div class="col blr">
+      <h3>🏙️ Bangalore Ads Version</h3>
+      <div class="row"><span class="tag">Scrape</span> Fetch from OLX / JustDial / IndiaMART</div>
+      <div class="row"><span class="tag">Filter</span> Filter by city = Bangalore, category = ads</div>
+      <div class="row"><span class="tag">Validate</span> Check company name, phone, ad text exist</div>
+      <div class="row"><span class="tag">Browser</span> Screenshot each company's ad page</div>
+      <div class="row"><span class="tag">Output</span> bangalore_ads.csv, company_report.json</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Important note ── -->
+<div class="section">
+  <h2>⚠️ Important: Which Sites Can You Scrape?</h2>
+  <div class="note">
+    <strong>Before scraping any website, check their Terms of Service.</strong>
+    Public sites like OLX, JustDial, and IndiaMART may allow reading public listings but usually prohibit automated bulk scraping.
+    The safest and most legal options are:<br><br>
+    ✅ <strong>Google My Business API</strong> — official API, free tier, returns business listings by city<br>
+    ✅ <strong>IndiaMART Seller API</strong> — official API for business listings<br>
+    ✅ <strong>Facebook Marketing API</strong> — shows active ads by location<br>
+    ✅ <strong>LinkedIn Ads API</strong> — for B2B company ads<br><br>
+    Using official APIs = legal, reliable, and won't get your IP blocked.
+  </div>
+</div>
+
+<!-- ── Skills table ── -->
+<div class="section">
+  <h2>✅ Skills from This Project That Apply Directly to Ads Monitoring</h2>
+  <table>
+    <tr><th>Skill you learned</th><th>Used in ads project for</th></tr>
+    <tr><td>curl / requests (fetch data)</td><td>Call Google My Business API or IndiaMART API</td></tr>
+    <tr><td>JSON validation (jsonschema)</td><td>Check every ad has company name, location, category</td></tr>
+    <tr><td>Python filtering (argparse)</td><td>Filter ads by city="Bangalore", date, category</td></tr>
+    <tr><td>Playwright (browser bot)</td><td>Open company ad pages, take screenshots as evidence</td></tr>
+    <tr><td>Cron scheduling</td><td>Run daily at 9am, log new ads automatically</td></tr>
+    <tr><td>File I/O (save to JSON/CSV)</td><td>Save bangalore_ads.csv for Excel analysis</td></tr>
+  </table>
+</div>
+
+</body>
+</html>
